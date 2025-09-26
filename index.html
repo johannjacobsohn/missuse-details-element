@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misusing the &lt;details&gt; Element</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+>
+<style>
+    body {
+        background-color: antiquewhite;
+        max-width: 800px;
+        padding: 1em;
+        margin: 0 auto;
+        min-height: 100vh;
+    }
+
+    nav {
+        details {
+            summary {
+                margin: 0 0 1em 0!important;
+            }
+            margin: 0;
+            padding: 0;
+            position: relative;
+
+            ul {
+                position: absolute;
+                background: white;
+                border: 1px solid #ccc;
+                list-style: none;
+                flex-direction: column;
+            }
+        }
+    }
+
+    blockquote {
+        border-left: 4px solid #ccc;
+        margin: 1em 0;
+        padding-left: 1em;
+        color: #555;
+        font-style: italic;
+        &::after {
+            content: attr(cite);
+            font-size: 0.8em;
+            display : block;
+            margin-top: 0.5em;
+            color: #999;
+            text-align: right;
+        }
+    }
+</style>
+
+</head>
+<body>
+
+    <h1>Misusing the &lt;details&gt; Element</h1>
+
+    <nav>
+        <details name="nav">
+            <summary>Nav Element 1</summary>
+            <ul>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+            </ul>
+        </details>
+        <details name="nav">
+            <summary>Nav Element 2</summary>
+            <ul>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+            </ul>
+        </details>
+        <details name="nav">
+            <summary>Nav Element 3</summary>
+            <ul>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+            </ul>
+        </details>
+    </nav>
+
+    <main>
+        <h2>Main Content Area</h2>
+        <p><a href="https://html.spec.whatwg.org/#the-details-element">The HTML specs</a> clearly states that the <code>&lt;details&gt;</code> element is not to be used to implement menu bars, so lets do exactly that.</p>
+        <blockquote cite="https://html.spec.whatwg.org/#the-details-element">
+            As with all HTML elements, it is not conforming to use the details element when attempting to represent another type of control. For example, tab widgets and menu widgets are not disclosure widgets, so abusing the details element to implement these patterns is incorrect.
+        </blockquote>
+
+        But also:
+        <blockquote cite="https://html.spec.whatwg.org/#the-details-element">
+            The details element is not appropriate for footnotes. Please see the section on footnotes for details on how to mark up footnotes.
+        </blockquote>
+
+</body>
+</html>
