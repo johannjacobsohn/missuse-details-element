@@ -9,11 +9,17 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"> -->
 <style>
     body {
-        /* background-color: var(--pico-background); */
         max-width: 800px;
         padding: 1em;
-        margin: 0 auto;
+        margin: 0 auto 3em auto;
         min-height: 100vh;
+
+        @media only screen and (prefers-color-scheme: light){
+            background-color: antiquewhite;
+        }
+        html[data-theme="light"] & {
+            background-color: antiquewhite;
+        }
     }
 
     nav {
@@ -58,7 +64,8 @@
 
         details {
             display: inline-block;
-            
+            max-width: 30%;
+
             summary {
                 display: inline-block;
                 padding: 12px 20px;
@@ -71,13 +78,18 @@
                 font-weight: 500;
                 transition: all 0.2s ease;
                 z-index: 3;
-                height: 41px;
+                height: 43px;
+                &::after {
+                    display: none;
+                }
+
                 &:hover {
                     background: #e9e9e9;
                 }
                 [open] & {
                     background: white;
                     height: 44px;
+                    pointer-events: none; /* we want to disable closing a details, otherwise no tab would be open */
                 }
             }            
 
@@ -161,13 +173,14 @@
         cursor: help;
         summary {
             cursor: help;
+            margin-bottom: 0;
             &::after {
                 display: none;
             }
         }
 
         &::details-content {
-            /* display: none; */
+            display: none;
             width: 200px;
             background-color: black;
             color: #fff;
@@ -191,6 +204,7 @@
         cursor: pointer;
         summary {
             cursor: pointer;
+            text-decoration: dashed underline;
             &::after {
                 display: none;
             }
@@ -210,6 +224,7 @@
             right: 0;
             background: yellow;
             border-top: 1px solid #ccc;
+            z-index: 1;
         }
         &[open]::details-content {
             display: block;
